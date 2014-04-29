@@ -61,6 +61,10 @@ class PeopleController < ApplicationController
     end
   end
 
+  def valid_attributes
+     { first_name: "John", last_name: "Doe" }
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
