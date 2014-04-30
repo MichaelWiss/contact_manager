@@ -42,7 +42,7 @@ class PeopleController < ApplicationController
   def update
     respond_to do |format|
       if @person.update(person_params)
-        format.html { redirect_to @person, notice: 'Person was successfully updated.' }
+        format.html { redirect_to @phone_number.person, notice: 'Person was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -61,9 +61,7 @@ class PeopleController < ApplicationController
     end
   end
 
-  def valid_attributes
-     { first_name: "John", last_name: "Doe" }
-  end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

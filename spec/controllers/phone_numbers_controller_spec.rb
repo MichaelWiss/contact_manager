@@ -113,6 +113,8 @@ describe PhoneNumbersController do
         # submitted in the request.
         PhoneNumber.any_instance.should_receive(:update).with({ "number" => "MyString" })
         put :update, {:id => phone_number.to_param, :phone_number => { "number" => "MyString" }}, valid_session
+        let(:bob) { Person.create(first_name: 'Bob', last_name: 'Jones') }
+    let(:valid_attributes) { {number: '555-5678', person_id: bob.id} }
       end
 
       it "assigns the requested phone_number as @phone_number" do
