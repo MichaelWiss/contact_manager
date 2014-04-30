@@ -67,6 +67,9 @@ describe PhoneNumbersController do
         expect {
           post :create, {:phone_number => valid_attributes}, valid_session
         }.to change(PhoneNumber, :count).by(1)
+        let(:alice) { Person.create(first_name: 'Alice', last_name: 'Smith') }
+        let(:valid_attributes) { {number: '555-1234', person_id: alice.id} }
+
       end
 
       it "assigns a newly created phone_number as @phone_number" do
@@ -75,10 +78,12 @@ describe PhoneNumbersController do
         assigns(:phone_number).should be_persisted
       end
 
-      it "redirects to the created phone_number" do
+      it "redirects to the phone number's person" do
+        alice = Person.create(first_name: 'Alice', last_name: 'Smith')
+        valid_attributes = {number: '555-8888', person_id: alice.id}
         post :create, {:phone_number => valid_attributes}, valid_session
-        response.should redirect_to(PhoneNumber.last)
-      end
+        expect(response).to redirect_to(alice)
+    end
     end
 
     describe "with invalid params" do
