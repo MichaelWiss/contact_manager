@@ -20,5 +20,10 @@ end
 it 'has an array of phone numbers' do
   expect(person.phone_numbers).to eq([])
 end
+
+it 'is invalid without a number' do
+  phone_number.number = nil
+  expect(phone_number).to_not be_valid
+end
 end
 
